@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://7n16oa3lv14x"]
+
+[ext_resource type="Script" path="res://tscn/spawner.gd" id="1_10yg1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ueu7h"]
+
+[node name="Spawner" type="Area2D"]
+script = ExtResource("1_10yg1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ueu7h")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
