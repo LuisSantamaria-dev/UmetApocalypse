@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://brvbpwvsrk1qj"]
+
+[ext_resource type="Texture2D" uid="uid://bmrhs641216x5" path="res://Sprites/white_sq.png" id="1_l0o1i"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_35m3r"]
+size = Vector2(4, 1.6)
+
+[node name="Bullet" type="RigidBody2D"]
+gravity_scale = 0.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(1, 1, 0, 1)
+scale = Vector2(0.063, 0.025)
+texture = ExtResource("1_l0o1i")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_35m3r")

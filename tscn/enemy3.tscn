@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://d0qavkkaekjhq"]
+
+[ext_resource type="Script" path="res://tscn/enemy.gd" id="1_ax2yu"]
+[ext_resource type="Texture2D" uid="uid://c5cg7dt8axoe2" path="res://Sprites/zombie1-removebg-preview.png" id="2_ne4c3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_igboe"]
+size = Vector2(8, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4a8ee"]
+size = Vector2(9, 9)
+
+[node name="Enemy" type="CharacterBody2D"]
+script = ExtResource("1_ax2yu")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.545098, 0.254902, 0.254902, 1)
+scale = Vector2(0.08, 0.08)
+texture = ExtResource("2_ne4c3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_igboe")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_4a8ee")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

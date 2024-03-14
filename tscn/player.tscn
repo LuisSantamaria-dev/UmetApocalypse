@@ -1,0 +1,63 @@
+[gd_scene load_steps=8 format=3 uid="uid://corc1yboqshf"]
+
+[ext_resource type="Script" path="res://tscn/player.gd" id="1_aydai"]
+[ext_resource type="Texture2D" uid="uid://dn1jjui50yd03" path="res://Sprites/__preview_pic.png" id="2_o2x61"]
+[ext_resource type="Texture2D" uid="uid://cm70m7k6k733e" path="res://Sprites/muzzle_flash.png" id="3_6h64h"]
+[ext_resource type="Texture2D" uid="uid://dvsawhmkee00k" path="res://Sprites/NaD6F.png" id="4_6njme"]
+[ext_resource type="AudioStream" uid="uid://emhjkr7ntomg" path="res://Sprites/shotgun_shot1.wav" id="4_jr201"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_igboe"]
+size = Vector2(8, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4a8ee"]
+size = Vector2(9, 9)
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_aydai")
+bullet_speed = 500
+
+[node name="SpawnBullet" type="Marker2D" parent="."]
+position = Vector2(17, 6)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(0.125, 0.125)
+texture = ExtResource("2_o2x61")
+
+[node name="MuzzleFlash" type="Sprite2D" parent="."]
+visible = false
+self_modulate = Color(1, 0.352941, 0.0235294, 1)
+texture_filter = 1
+position = Vector2(21, 5.68466)
+rotation = 1.5708
+scale = Vector2(0.215292, 0.235)
+texture = ExtResource("3_6h64h")
+
+[node name="Timer" type="Timer" parent="MuzzleFlash"]
+wait_time = 0.1
+one_shot = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_igboe")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_4a8ee")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
+position_smoothing_enabled = true
+rotation_smoothing_enabled = true
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+scale = Vector2(1.5, 1.5)
+shadow_enabled = true
+texture = ExtResource("4_6njme")
+
+[node name="ShootSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_jr201")
+volume_db = -8.285
+
+[connection signal="timeout" from="MuzzleFlash/Timer" to="MuzzleFlash" method="hide"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
