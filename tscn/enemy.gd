@@ -5,7 +5,7 @@ var motion = Vector2.ZERO
 func _ready():
 	pass
 
-func _physics_process(_delta):
+func _physics_process(delta):
 	var Player = get_parent().get_node("Player")
 	
 	position += (Player.position - position)/50
@@ -15,5 +15,5 @@ func _physics_process(_delta):
 
 
 func _on_area_2d_body_entered(body):
-	if "Bullet" in body.name:
+	if body.is_in_group("Bullets"):
 		queue_free()
