@@ -427,7 +427,7 @@ sources/0 = SubResource("TileSetAtlasSource_ql8pp")
 [node name="Main" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_apkry")]
-position = Vector2(190, 108)
+position = Vector2(676, 240)
 SPEED = 200.0
 
 [node name="Suelo" type="Sprite2D" parent="."]

@@ -7,7 +7,7 @@ var player = null
 func _ready():
 	player = get_tree().get_nodes_in_group("player")[0]
 
-func _process(delta):
+func _process(_1delta):
 	follow()
 
 func follow():
